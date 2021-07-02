@@ -1,0 +1,18 @@
+version: '3.4'
+services:
+  test:
+    image: registry.trendyol.com/customer-service/cs/accepptance-tests/acme-ui-gcustomer-contract-test:latest
+    links:
+      - gcustomer
+    depends_on:
+      - gcustomer
+
+  gcustomer:
+    image: registry.trendyol.com/customer-service/cs/gcustomer-services-gateway:latest
+    ports:
+      - 5555:5555
+    environment:
+      ACTIVE_PROFILE: "integration"
+    expose:
+      - 5555
+
